@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Logo from './Logo';
-import { Menu, X, CircleDot, LayoutDashboard, DollarSign, Sun, Moon } from 'lucide-react';
+import { Menu, X, Home, Briefcase, FolderOpen, Mail, Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Switch } from '@/components/ui/switch';
 
 const Header = () => {
-  const [activePage, setActivePage] = useState('features');
+  const [activePage, setActivePage] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false); // Default to light mode
   
@@ -61,34 +61,44 @@ const Header = () => {
           <div className="rounded-full px-1 py-1 backdrop-blur-md bg-background/80 border border-border shadow-lg">
             <ToggleGroup type="single" value={activePage} onValueChange={(value) => value && setActivePage(value)}>
               <ToggleGroupItem 
-                value="features"
+                value="home"
                 className={cn(
                   "px-4 py-2 rounded-full transition-colors relative",
-                  activePage === 'features' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'home' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 )}
-                onClick={handleNavClick('features')}
+                onClick={handleNavClick('home')}
               >
-                <CircleDot size={16} className="inline-block mr-1.5" /> Features
+                <Home size={16} className="inline-block mr-1.5" /> Home
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="dashboard" 
+                value="services" 
                 className={cn(
                   "px-4 py-2 rounded-full transition-colors relative",
-                  activePage === 'dashboard' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'services' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 )}
-                onClick={handleNavClick('dashboard')}
+                onClick={handleNavClick('services')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Dashboard
+                <Briefcase size={16} className="inline-block mr-1.5" /> Services
               </ToggleGroupItem>
               <ToggleGroupItem 
-                value="pricing" 
+                value="projects" 
                 className={cn(
                   "px-4 py-2 rounded-full transition-colors relative",
-                  activePage === 'pricing' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'projects' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 )}
-                onClick={handleNavClick('pricing')}
+                onClick={handleNavClick('projects')}
               >
-                <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
+                <FolderOpen size={16} className="inline-block mr-1.5" /> Projects
+              </ToggleGroupItem>
+              <ToggleGroupItem 
+                value="contact" 
+                className={cn(
+                  "px-4 py-2 rounded-full transition-colors relative",
+                  activePage === 'contact' ? 'text-accent-foreground bg-accent' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                )}
+                onClick={handleNavClick('contact')}
+              >
+                <Mail size={16} className="inline-block mr-1.5" /> Contact
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -99,31 +109,40 @@ const Header = () => {
           <div className="md:hidden absolute top-20 left-4 right-4 bg-background/95 backdrop-blur-md py-4 px-6 border border-border rounded-2xl shadow-lg z-50">
             <div className="flex flex-col gap-4">
               <a 
-                href="#features" 
+                href="#home" 
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                  activePage === 'features' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'home' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
-                onClick={handleNavClick('features')}
+                onClick={handleNavClick('home')}
               >
-                <CircleDot size={16} className="inline-block mr-1.5" /> Features
+                <Home size={16} className="inline-block mr-1.5" /> Home
               </a>
               <a 
-                href="#dashboard" 
+                href="#services" 
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                  activePage === 'dashboard' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'services' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
-                onClick={handleNavClick('dashboard')}
+                onClick={handleNavClick('services')}
               >
-                <LayoutDashboard size={16} className="inline-block mr-1.5" /> Dashboard
+                <Briefcase size={16} className="inline-block mr-1.5" /> Services
               </a>
               <a 
-                href="#pricing" 
+                href="#projects" 
                 className={`px-3 py-2 text-sm rounded-md transition-colors ${
-                  activePage === 'pricing' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                  activePage === 'projects' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
                 }`}
-                onClick={handleNavClick('pricing')}
+                onClick={handleNavClick('projects')}
               >
-                <DollarSign size={16} className="inline-block mr-1.5" /> Pricing
+                <FolderOpen size={16} className="inline-block mr-1.5" /> Projects
+              </a>
+              <a 
+                href="#contact" 
+                className={`px-3 py-2 text-sm rounded-md transition-colors ${
+                  activePage === 'contact' ? 'bg-accent text-accent-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'
+                }`}
+                onClick={handleNavClick('contact')}
+              >
+                <Mail size={16} className="inline-block mr-1.5" /> Contact
               </a>
               
               {/* Add theme toggle for mobile */}
@@ -155,7 +174,7 @@ const Header = () => {
             <Sun size={18} className={`${!isDarkMode ? 'text-primary' : 'text-muted-foreground'}`} />
           </div>
           <div className="rounded-2xl">
-            <Button variant="ghost" className="text-muted-foreground hover:text-foreground hover:bg-muted">Log in</Button>
+            <Button variant="ghost" className="text-muted-foreground hover:text-foreground hover:bg-muted">Get Quote</Button>
           </div>
         </div>
       </header>
